@@ -1,4 +1,8 @@
-/*var name = 'Tung';
+///////////////////JAVASCRIPT IN PROGRESS\\\\\\\\\\\\\\\\\\\\
+
+
+/*
+var name = 'Tung';
 console.log(name);
 var lastName = 'Dinh';
 console.log(lastName);
@@ -45,7 +49,7 @@ switch (job) {
 }
 
 
-
+/////////////////////////////////////////
 
 
 var johnHeight = 179;
@@ -66,11 +70,17 @@ if (johnScore>mattScore&&johnScore>scottScore) {
 } else {
     console.log('There is a draw!');
 }
+
+/////////////////////////////////////////
+
 function toCelcius(f) {
     var c = 5/9 * (f-32);
     console.log('The temperature is '+c+' Celcius degree.');
 }
 toCelcius(60);
+
+/////////////////////////////////////////
+
 var zac = ['Tung', 'Dinh', 21, 'software developer', true];
 zac.push('soccer'); 
 zac.unshift('Mr.');
@@ -112,6 +122,8 @@ var yob = tung.calculateYOP();
 tung.yob = yob;
 console.log(tung);
 
+/////////////////////////////////////////
+
 var tung = {
     name: 'Tung Dinh',
     age: 22,
@@ -134,10 +146,7 @@ while(i>=0) {
     i--;
 }
 
-//Coding Challenge 2
-
-
-
+/////////////////Coding Challenge 2\\\\\\\\\\\\\\\\
 
 function printFullAge(year) {
     
@@ -165,6 +174,8 @@ var year = [1998, 1996, 2006, 1930];
 var full_1 = printFullAge(year);
 var full_2 = printFullAge([1964, 2005, 1990]);
 
+/////////////////////////////////////////
+
 var a = 'Tung! ';
 first();
 function first() {
@@ -179,6 +190,8 @@ function first() {
         }
     }
 }
+
+/////////////////////////////////////////
 
 var tung = {
     name: 'Tung',
@@ -197,6 +210,7 @@ var matt = {
 matt.calculateAge= tung.calculateAge;
 matt.calculateAge();
 
+/////////////////////////////////////////
 
 var temperature = {
     city: 'Seattle',
@@ -224,8 +238,9 @@ laTemp.toCelcius();
 chiTemp.calculateAvgTemp();
 chiTemp.toCelcius();
 hawTemp.calculateAvgTemp();
-hawTemp.toCelcius();*/
+hawTemp.toCelcius();
 
+/////////////////////////////////////////
 
 var personProto = {
     calculateAge: function() {
@@ -243,6 +258,115 @@ var jane = Object.create(personProto,{
     yearOfBirth: { value: 1996},
     job: { value: 'Model'}
 });
+
+//////////////////////////////////////////
+
+//********Primitives VS Objects*********\\
+
+//Primitives
+
+var a = 21;
+var b = a;
+a = 46;
+console.log(a); //46
+console.log(b); //21
+
+//Objects
+
+var obj1 = {
+    name: 'Joel',
+    age: 26
+};
+
+var obj2 = obj1;
+obj1.age = 54;
+console.log(obj1.age); //54
+console.log(obj2.age); //54
+
+//Function
+var age = 27;
+var obj = {
+    name: 'John',
+    job: 'Software Developer'
+};
+
+function differ(a,b) {
+    a = 30;
+    b.job = 'Software Principle';
+};
+
+differ(age,obj);
+console.log(age); //27(Not changed)
+console.log(obj.job); //Software Principle
+
+///////////////////////////////////////////////////
+
+var years = [1996, 1990, 1985, 1980, 2001];
+function calc(arr, fn) {
+    var arrRes = [];
+    for(var i=0; i<arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes; 
+}
+function calculateAge(el) {
+    return 2018 - el;
+}
+function adult(el) {
+    return el>=21;
+}
+function heartRate(el) {
+    if(el>=18&&el<=81) {
+    return Math.round(206.9 - (0.67*el));
+    } else {
+        return -1;
+    }
+}
+var ages = calc(years, calculateAge);
+console.log(ages);
+var adults = calc(ages, adult);
+console.log(adults);
+var heartRates = calc(ages, heartRate);
+console.log(heartRates);*/
+
+//////////////////////////////////////////////////
+
+function interviewQuestions(job) {
+    if(job==='Software Developer') {
+        return function questions(name, answer) {
+            console.log('Hi, '+name+'! What programming languague do you know?');
+            console.log('- I have a strong knowledge of '+answer);
+            if(answer === 'Java' || answer === 'C++') {
+                if(answer==='Java') {
+                console.log(answer+' is one of the most popular language has been used nowadays. Can you briefly describe how binary search tree works?');
+                } else {
+                console.log(answer+' is one of the most popular language has been used nowadays. Can you briefly describe how bitwise works?');
+                }
+            } else {
+                console.log('Unfortunately, you\'re not qualified for this program. Therefore, we have to consider your application as a denial. If you\'re hoping to reapply for this position, I encourage you to have some experience with Java or C++ and experience writing and reviewing code daily in a team for at least 3 years.');
+            }
+        }
+    } else if (job ==='UI/UX designer') {
+       return function questions(name, answer) { console.log('Hi, '+name+'! Can you please explain what UX design is?');
+            if(answer === 'User experience design') {
+                console.log('Congratulation! You\'re hired.');
+            } else {
+                console.log('Wish you best luck next time!');
+            }
+            }
+    }
+}
+var softwaredeveloperQuestions = interviewQuestions('Software Developer');
+
+softwaredeveloperQuestions('Tung', 'Java');
+softwaredeveloperQuestions('John', 'C++');
+softwaredeveloperQuestions('Mike', 'PHP');
+
+
+
+
+
+
 
 
 
