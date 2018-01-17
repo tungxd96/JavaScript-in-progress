@@ -327,7 +327,7 @@ console.log(ages);
 var adults = calc(ages, adult);
 console.log(adults);
 var heartRates = calc(ages, heartRate);
-console.log(heartRates);*/
+console.log(heartRates);
 
 //////////////////////////////////////////////////
 
@@ -362,6 +362,132 @@ softwaredeveloperQuestions('Tung', 'Java');
 softwaredeveloperQuestions('John', 'C++');
 softwaredeveloperQuestions('Mike', 'PHP');
 
+///////////////////////////////////////////////////////
+
+//IIFE
+
+(function (x) {
+ var score = Math.random()*10;
+console.log(score>=5-x);
+ })(2);
+
+///////////////////////////////////////////////////////
+
+//Closure
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement.';
+    return function(name, yearOfBirth) {
+        console.log(name+' has '+(retirementAge-(2018-yearOfBirth))+a);
+    }
+}
+
+var retirementUS = retirement(65);
+var retirementGermany = retirement(66);
+var retirementIceland = retirement(67);
+retirementUS('John', 1996);
+retirementGermany('Reus', 1990);
+retirementIceland('Roy', 1985);
+ 
+
+function interviewQ(job) {
+    return function(name) {
+        if(job === 'teacher') {
+            console.log('What subject do you teach, '+name+'?');
+        } else if(job === 'designer') {
+            console.log('Hello, '+name+'! Can you explain what UX desiner is?');
+        } else {
+            console.log('What do you do then, '+name+'?');
+        }
+    }
+}
+
+interviewQ('designer')('Rod'); */
+
+////////////////////////////////////////////////////////
+
+//Bind, call & apply method
+
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function(style, timeofDay) {
+        if(style === 'formal') {
+            console.log('Good '+timeofDay+', Ladies and gentlemen! I\'m '+this.name+', I\'m a '+this.job+' and I\'m '+this.age+' years old.');
+        } else if(style === 'friendly') {
+            console.log('Hey, what\'s up? I\'m '+this.name+', I\'m a '+this.job+' and I\'m '+this.age+' years old. Have a wonderful '+timeofDay+'!');
+        }
+    }
+};
+john.presentation('formal','morning');
+var ashley = {
+    name: 'Ashley',
+    age:21,
+    job:'designer'
+};
+
+//Call method
+john.presentation.call(ashley, 'friendly', 'evening');
+
+//Bind method
+var johnFriendly = john.presentation.bind(john,'friendly');
+johnFriendly('morning');
+ 
+//Apply method
+
+//john.presentation.apply(ashley, ['formal','afternoon']);
+ 
+//Examples
+
+var years = [1996, 1990, 1985, 1980, 2001];
+function calc(arr, fn) {
+    var arrRes = [];
+    for(var i=0; i<arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes; 
+}
+function calculateAge(el) {
+    return 2018 - el;
+}
+function adult(limit, el) {
+    return el>=limit;
+}
+
+var ages = calc(years, calculateAge);
+var adultJapan = calc(ages, adult.bind(this,20));
+console.log(ages);
+console.log(adultJapan);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 
